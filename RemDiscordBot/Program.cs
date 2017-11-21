@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RemDiscordBot.Discord_Communication;
+using Discord.Commands;
 
 namespace RemDiscordBot
 {
@@ -21,16 +23,16 @@ namespace RemDiscordBot
             _socketClient.Log += Log;
 
             await _socketClient.LoginAsync(TokenType.Bot, _token);
-            await _socketClient.StartAsync();
-
+            await  _socketClient.StartAsync();
+            Console.WriteLine("This probly doesnt work this way");
             await Task.Delay(-1);
 
         }
-            private Task Log(LogMessage msg)
-            {
-                Console.WriteLine(msg.ToString());
-                return Task.CompletedTask;
-            }
+        private Task Log(LogMessage msg)
+        {
+            Console.WriteLine(msg.ToString());
+            return Task.CompletedTask;
         }
     }
+}
 

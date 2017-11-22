@@ -3,14 +3,8 @@ using Discord.Commands;
 using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
-using RemDiscordBot.Discord_Communication;
-using Discord.Commands;
-
 namespace RemDiscordBot
 {
     class Program
@@ -83,5 +77,4 @@ namespace RemDiscordBot
             }
         }
     }
-}
 

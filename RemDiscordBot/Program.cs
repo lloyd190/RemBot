@@ -8,6 +8,8 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using RemDiscordBot.Discord_Communication;
+using Discord.Commands;
 
 namespace RemDiscordBot
 {
@@ -81,4 +83,5 @@ namespace RemDiscordBot
             }
         }
     }
+}
 

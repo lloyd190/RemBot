@@ -131,6 +131,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="logFiles\AILogStructs.cs" />
+    <Compile Include="AI\EmotionController.cs" />
+    <Compile Include="interfaces\IEmotionController.cs" />
     <Compile Include="modules\CommunicationModule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

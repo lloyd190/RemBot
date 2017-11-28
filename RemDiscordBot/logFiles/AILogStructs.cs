@@ -3,7 +3,7 @@
 namespace RemDiscordBot.logFiles
 {
     /// <summary>
-    /// for packaging data prints to the console for the EmotionController.
+    /// Logging struct for packaging data to be used as optional retrievable data from the EmotionController API.
     /// </summary>
     public struct EmotionLog
     {//add where needed

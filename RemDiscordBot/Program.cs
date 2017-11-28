@@ -2,6 +2,7 @@
 using Discord.Commands;
 using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
+using RemDiscordBot.AI;
 using System;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -14,12 +15,15 @@ namespace RemDiscordBot
         private IServiceProvider _services;
         private DiscordSocketClient _socketClient;
         private CommandService _commands;
+        private EmotionController _emotionController;
         static void Main(string[] args) => new Program().MainAsync(args).GetAwaiter().GetResult();
 
         public async Task MainAsync(string[] args)
         {
             try
             {
+                _emotionController = new EmotionController();
+                _emotionController.EmotionStatus += EmotionStatusLog;
                 _socketClient = new DiscordSocketClient();
                 _socketClient.Log += Log;
 
@@ -43,6 +47,12 @@ namespace RemDiscordBot
             }
 
         }
+
+        private Task EmotionStatusLog(logFiles.EmotionLog arg)
+        {
+            return Task.CompletedTask;
+        }
+
         public async Task InstallCommandsAsync()
         {
             _socketClient.MessageReceived += HandleCommandAsync;
@@ -52,6 +62,8 @@ namespace RemDiscordBot
 
         private async Task HandleCommandAsync(SocketMessage messageParam)
         {
+            //TEST REMOVE LATER
+            _emotionController.Mood = Emotion.Happy;
             var message = messageParam as SocketUserMessage;
             if (message == null) return;
 
@@ -60,11 +72,12 @@ namespace RemDiscordBot
 
             var context = new SocketCommandContext(_socketClient, message);
             var result = await _commands.ExecuteAsync(context, argPos, _services);
+
             if (!result.IsSuccess)
             {
                 await context.Channel.SendMessageAsync("Sorry? that doesn't make sense to me.");
             }
-            if(result.IsSuccess)
+            else if(result.IsSuccess)
             {
                 Console.WriteLine("message received");
             }

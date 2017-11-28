@@ -11,10 +11,9 @@ namespace RemDiscordBot.interfaces
     interface IEmotionController
     {
         /// <summary>
-        /// delegate event for EmotionStatus Updates (call when the EMOTION CHANGES)
+        /// EmotionStatus updates
         /// </summary>
-        event Func<EmotionLog> EmotionStatus;
-
+        event Func<EmotionLog, Task> EmotionStatus;
         /// <summary>
         /// Current mood of the character
         /// </summary>

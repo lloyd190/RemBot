@@ -11,7 +11,7 @@ namespace RemDiscordBot.AI
     public enum Emotion { Happy, Sad, Neutral }
     public class EmotionController : IEmotionController
     {
-        public event Func<EmotionLog> EmotionStatus;
+        public event Func<EmotionLog, Task> EmotionStatus;
 
         #region members
         private Emotion Emotion = Emotion.Neutral;
@@ -29,11 +29,7 @@ namespace RemDiscordBot.AI
                 if (Emotion != value)
                 {
                     Emotion = value;
-                    EmotionStatus.Method.EventHandler temp = MyEvent;
-                    if (temp != null)
-                    {
-                        temp();
-                    }
+                    EmotionStatus(new EmotionLog(Emotion.Happy));
                 }
 
             }

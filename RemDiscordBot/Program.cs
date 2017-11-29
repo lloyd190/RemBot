@@ -3,7 +3,10 @@ using Discord.Commands;
 using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
 using RemDiscordBot.AI;
+using RemDiscordBot.logFiles;
 using System;
+using System.Diagnostics;
+using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
 namespace RemDiscordBot
@@ -22,8 +25,8 @@ namespace RemDiscordBot
         {
             try
             {
-                _emotionController = new EmotionController();
-                _emotionController.EmotionStatus += EmotionStatusLog;
+                _emotionController = new EmotionController(-20, -20);
+                _emotionController.EmotionStatusLog += EmotionStatusLog;
                 _socketClient = new DiscordSocketClient();
                 _socketClient.Log += Log;
 
@@ -48,13 +51,9 @@ namespace RemDiscordBot
 
         }
 
-        private Task EmotionStatusLog(logFiles.EmotionLog arg)
-        {
-            return Task.CompletedTask;
-        }
-
         public async Task InstallCommandsAsync()
         {
+            _emotionController.EmotionStatusLog += EmotionStatusLog;
             _socketClient.MessageReceived += HandleCommandAsync;
 
             await _commands.AddModulesAsync(Assembly.GetEntryAssembly());
@@ -62,8 +61,9 @@ namespace RemDiscordBot
 
         private async Task HandleCommandAsync(SocketMessage messageParam)
         {
-            //TEST REMOVE LATER
+            //TEST, REMOVE.
             _emotionController.Mood = Emotion.Happy;
+
             var message = messageParam as SocketUserMessage;
             if (message == null) return;
 
@@ -88,6 +88,14 @@ namespace RemDiscordBot
                 Console.WriteLine(message.ToString());
                 return Task.CompletedTask;
             }
+        //TODO: maybe there are some problems with the timing of the emotion updates. 
+        //Check if quick messaging doesn't Skip the previous emotion update.
+        private Task EmotionStatusLog(EmotionLog status)
+        {
+            Console.WriteLine(status.ToString());
+
+            return Task.CompletedTask;
         }
     }
+}
 

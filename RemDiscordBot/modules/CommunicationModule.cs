@@ -13,9 +13,7 @@ namespace RemDiscordBot.modules
         [Summary("just saying hello")]
         public async Task sayHello()
         {
-            await Context.Channel.SendMessageAsync("hi there, this is my first command ever executed!");
+                await Context.Channel.SendMessageAsync("hi there, this is my first command ever executed!");
         }
-        [Command("hello")]
-        [Summary("just saying hello")]
     }
 }

@@ -13,7 +13,7 @@ namespace RemDiscordBot.interfaces
         /// <summary>
         /// EmotionStatus updates
         /// </summary>
-        event Func<EmotionLog, Task> EmotionStatus;
+        event Func<EmotionLog, Task> EmotionStatusLog;
         /// <summary>
         /// Current mood of the character
         /// </summary>

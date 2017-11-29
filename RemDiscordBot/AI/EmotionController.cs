@@ -11,48 +11,80 @@ namespace RemDiscordBot.AI
     public enum Emotion { Happy, Sad, Neutral }
     public class EmotionController : IEmotionController
     {
-        public event Func<EmotionLog, Task> EmotionStatus;
+        public event Func<EmotionLog, Task> EmotionStatusLog;
 
         #region members
-        private Emotion Emotion = Emotion.Neutral;
+        private double _baseComplimentValue;
+        private double _baseOffenseValue;
+        private Emotion _Emotion = Emotion.Neutral;
+        private double _EmotionMeter = 50;
         #endregion
 
+        #region constructors
+        public EmotionController(double baseComplimentValue, double baseOffenseValue)
+        {
+            if (baseComplimentValue <= 0 || baseOffenseValue <= 0)
+            {
+                throw new ArgumentException("Arguments are not within the wanted range," +
+                    " the EmotionMeter will not have been influenced by these values or would have been influenced negatively");
+            }
+            _baseComplimentValue = baseComplimentValue;
+            _baseOffenseValue = baseOffenseValue;
+        }
+        #endregion
+
+        #region properties
         public Emotion Mood
         {
             get
             {
-                return Emotion;
+                return _Emotion;
             }
 
             set
             {
-                if (Emotion != value)
+                if (_Emotion != value)
                 {
-                    Emotion = value;
-                    EmotionStatus(new EmotionLog(Emotion.Happy));
+                    _Emotion = value;
+                    EmotionStatusLog(new EmotionLog(value));
                 }
 
             }
         }
+        #endregion
 
+        #region methods
         public void ComplimentCharacter(double amount)
         {
-            throw new NotImplementedException();
+            if (amount <= _EmotionMeter && !(_EmotionMeter + amount > 100))
+            {
+                _EmotionMeter += amount;
+            }
         }
 
         public void ComplimentCharacter()
         {
-            throw new NotImplementedException();
+            if (!(_EmotionMeter + _baseComplimentValue > 100))
+            {
+                _EmotionMeter += _baseComplimentValue;
+            }
         }
 
         public void OffendCharacter(double amount)
         {
-            throw new NotImplementedException();
+            if (!(_EmotionMeter + _baseOffenseValue > 100))
+            {
+                _EmotionMeter -= amount;
+            }
         }
 
         public void OffendCharacter()
         {
-            throw new NotImplementedException();
+            if (!(_EmotionMeter + _baseOffenseValue > 100))
+            {
+                _EmotionMeter -= _baseOffenseValue;
+            }
         }
+        #endregion
     }
 }

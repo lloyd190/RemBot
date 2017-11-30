@@ -25,7 +25,7 @@ namespace RemDiscordBot
         {
             try
             {
-                _emotionController = new EmotionController(-20, -20);
+                _emotionController = new EmotionController(20, 20);
                 _emotionController.EmotionStatusLog += EmotionStatusLog;
                 _socketClient = new DiscordSocketClient();
                 _socketClient.Log += Log;
@@ -35,6 +35,7 @@ namespace RemDiscordBot
                 _services = new ServiceCollection()
                     .AddSingleton(_socketClient)
                     .AddSingleton(_commands)
+                    .AddSingleton(_emotionController)
                     .BuildServiceProvider();
 
 
@@ -53,7 +54,7 @@ namespace RemDiscordBot
 
         public async Task InstallCommandsAsync()
         {
-            _emotionController.EmotionStatusLog += EmotionStatusLog;
+            //_emotionController.EmotionStatusLog += EmotionStatusLog;
             _socketClient.MessageReceived += HandleCommandAsync;
 
             await _commands.AddModulesAsync(Assembly.GetEntryAssembly());
@@ -61,21 +62,30 @@ namespace RemDiscordBot
 
         private async Task HandleCommandAsync(SocketMessage messageParam)
         {
-            //TEST, REMOVE.
-            _emotionController.Mood = Emotion.Happy;
 
             var message = messageParam as SocketUserMessage;
             if (message == null) return;
 
+            if (message.Content.Contains("~kiss") && message.Author.Username != "Lloyd")
+            {
+                await message.Channel.SendMessageAsync("Don't touch me!");
+                return;
+            }
+            else if (message.Content.Contains("~kiss") && message.Author.Username == "Lloyd")
+            {
+                await message.Channel.SendMessageAsync(":3");
+                return;
+            }
+
             int argPos = 0;
-            if (!message.HasMentionPrefix(_socketClient.CurrentUser, ref argPos)) return;
+            if (!message.HasMentionPrefix(_socketClient.CurrentUser, ref argPos) || message.Author.IsBot) return;
 
             var context = new SocketCommandContext(_socketClient, message);
             var result = await _commands.ExecuteAsync(context, argPos, _services);
 
             if (!result.IsSuccess)
             {
-                await context.Channel.SendMessageAsync("Sorry? that doesn't make sense to me.");
+                await context.Channel.SendMessageAsync(result.ErrorReason);
             }
             else if(result.IsSuccess)
             {

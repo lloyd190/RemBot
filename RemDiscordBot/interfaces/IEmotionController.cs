@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RemDiscordBot.interfaces
 {
-    interface IEmotionController
+    public interface IEmotionController
     {
         /// <summary>
         /// EmotionStatus updates

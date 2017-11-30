@@ -17,7 +17,8 @@ namespace RemDiscordBot.AI
         private double _baseComplimentValue;
         private double _baseOffenseValue;
         private Emotion _Emotion = Emotion.Neutral;
-        private double _EmotionMeter = 50;
+        private double _HappyMeter = 50;
+        private double _AngryMeter = 50;
         #endregion
 
         #region constructors
@@ -56,34 +57,38 @@ namespace RemDiscordBot.AI
         #region methods
         public void ComplimentCharacter(double amount)
         {
-            if (amount <= _EmotionMeter && !(_EmotionMeter + amount > 100))
+            if (amount <= _AngryMeter && !(_AngryMeter + amount > 100))
             {
-                _EmotionMeter += amount;
+                _AngryMeter += amount;
             }
         }
 
         public void ComplimentCharacter()
         {
-            if (!(_EmotionMeter + _baseComplimentValue > 100))
+            if (!(_AngryMeter + _baseComplimentValue > 100))
             {
-                _EmotionMeter += _baseComplimentValue;
+                _AngryMeter += _baseComplimentValue;
             }
         }
 
         public void OffendCharacter(double amount)
         {
-            if (!(_EmotionMeter + _baseOffenseValue > 100))
+            if (!(_AngryMeter + _baseOffenseValue > 100))
             {
-                _EmotionMeter -= amount;
+                _AngryMeter -= amount;
             }
         }
 
         public void OffendCharacter()
         {
-            if (!(_EmotionMeter + _baseOffenseValue > 100))
+            if (!(_AngryMeter + _baseOffenseValue > 100))
             {
-                _EmotionMeter -= _baseOffenseValue;
+                _AngryMeter -= _baseOffenseValue;
             }
+        }
+        public void CalculateEmotion()
+        {
+
         }
         #endregion
     }

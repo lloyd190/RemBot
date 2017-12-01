@@ -3,10 +3,14 @@ Dominance
 Dependance
 Friendly
 violent
+familiarity
 ->
 
-RemBot -
+RemBot - 
+Pleasure
+Happiness
 
 ->
+
 
 

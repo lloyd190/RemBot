@@ -1,14 +1,23 @@
 MentionedUser - 
 Dominance
 Dependance
-Friendly
-violent
-familiarity
+Familiarity 
+Trust
+Fear
+Approval
 ->
 
 RemBot - 
-Pleasure
 Happiness
+Sadness
+
+Pleasure -> struct (time(r)/ severity)
+Frustration -> struct (time(r)/ severity)
+Iritation -> struct (time(r)/ severity)
+Terror -> struct (time(r)/ severity)
+Rage -> struct (time(r)/ severity)
+Surprise -> struct (time(r)/ severity)
+Remorse -> struct (time(r)/ severity)
 
 ->
 

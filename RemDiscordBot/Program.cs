@@ -63,17 +63,21 @@ namespace RemDiscordBot
         private async Task HandleCommandAsync(SocketMessage messageParam)
         {
 
-            var message = messageParam as SocketUserMessage;
-            if (message == null) return;
-
-            if (message.Content.Contains("~kiss") && message.Author.Username != "Lloyd")
+           var message = messageParam as SocketUserMessage;
+            if (message == null) return;       
+            //TODO: improve or remove this code, hacky solution for a troll thing for in the chat
+            if (message.Content.Contains("~kiss") && message.Content.Contains("@381004257559707648"))
             {
+                if (message.Author.Username == "Lloyd" || message.Author.Username == "Marcel Kenter")
+                {
+                    await message.Channel.SendMessageAsync(":3");
+                    return;
+                }
                 await message.Channel.SendMessageAsync("Don't touch me!");
                 return;
             }
-            else if (message.Content.Contains("~kiss") && message.Author.Username == "Lloyd")
+            else if (message.Content.Contains("~kiss"))
             {
-                await message.Channel.SendMessageAsync(":3");
                 return;
             }
 

@@ -70,7 +70,7 @@ namespace RemDiscordBot
             {
                 if (message.Author.Username == "Lloyd" || message.Author.Username == "Marcel Kenter")
                 {
-                    await message.Channel.SendMessageAsync(":3");
+                    await message.Channel.SendMessageAsync(String.Format("xx {0} , {1}", message.Author.Username, ":3"));
                     return;
                 }
                 await message.Channel.SendMessageAsync("Don't touch me!");

@@ -18,7 +18,6 @@ Terror -> struct (time(r)/ severity)
 Rage -> struct (time(r)/ severity)
 Surprise -> struct (time(r)/ severity)
 Remorse -> struct (time(r)/ severity)
-
 ->
 
 

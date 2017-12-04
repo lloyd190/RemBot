@@ -26,7 +26,7 @@ namespace RemDiscordBot.interfaces
         void RunCommandNoData(string command);
 
         /// <summary>
-        /// Runs a command with return data for testing/
+        /// Runs a command with return data
         /// </summary>
         /// <param name="command"></param>
         /// <returns></returns>

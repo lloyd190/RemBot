@@ -20,17 +20,12 @@ namespace RemDiscordBot.AI
         {
         }
 
-        public void RunCommand(string command)
-        {
-            throw new NotImplementedException();
-        }
-
         public void RunCommandNoData(string command)
         {
             throw new NotImplementedException();
         }
 
-        CommandLog IECommandRunner.RunCommand(string command)
+        public CommandLog RunCommand(string command)
         {
             throw new NotImplementedException();
         }

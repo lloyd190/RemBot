@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace RemDiscordBot.AI
 {
-    public class Emotion
+    public abstract class Emotion
     {
+        public bool TimerIsRunning { get; }
+        public bool TimerEnded  { get; }
     }
 }

@@ -9,6 +9,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
+using System.Timers;
+
 namespace RemDiscordBot
 {
     class Program
@@ -25,7 +27,8 @@ namespace RemDiscordBot
         {
             try
             {
-                _emotionController = new EmotionController(20, 20);
+                Timer z = new Timer();
+                _emotionController = new EmotionController();
                 _emotionController.EmotionLog += EmotionStatusLog;
                 _socketClient = new DiscordSocketClient();
                 _socketClient.Log += Log;

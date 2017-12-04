@@ -8,5 +8,15 @@ namespace RemDiscordBot.AI
 {
     public class EmotionalReaction
     {
+        private Dictionary<string, Emotion> _emotionDictionary;
+
+        public EmotionalReaction()
+        {
+
+        }
+        public void AddEmotion(Emotion emotion)
+        {
+
+        }
     }
 }

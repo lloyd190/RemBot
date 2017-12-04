@@ -8,7 +8,7 @@ using RemDiscordBot.logFiles;
 
 namespace RemDiscordBot.AI
 {
-    public enum Emotion { Happy, Sad, Neutral }
+    public enum Emotion { Happy, Sad, Neutral,Angry }
     public class EmotionController : IEmotionController
     {
         public event Func<EmotionLog, Task> EmotionStatusLog;

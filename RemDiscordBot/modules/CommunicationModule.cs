@@ -17,16 +17,56 @@ namespace RemDiscordBot.modules
         {
             _emotionController = emotionController;
         }
-        [Command("hello")]
+        [Command("checkmood")]
         public async Task SayHello()
         {
-            _emotionController.Mood = Emotion.Sad;
-            if (_emotionController.Mood == Emotion.Happy)
+            
+            switch (_emotionController.Mood)
             {
-                await ReplyAsync("hello there, I am quite happy today ^.^");
-                return;
+                case Emotion.Happy:
+                    await ReplyAsync("Happy");
+                    break;
+                case Emotion.Sad:
+                    await ReplyAsync("Sad");
+                    break;
+                case Emotion.Neutral:
+                    await ReplyAsync("Neutral");
+                    break;
+                case Emotion.Angry:
+                    await ReplyAsync("Angry");
+                    break;
+                default:
+                    await ReplyAsync("Default case");
+                    break;
             }
-            await ReplyAsync("Humph, hello");
         }
+
+        [Command("changemood")]
+        public async Task changemood([Remainder]string mood)
+        {
+            switch (mood.ToLower())
+            {
+                case "happy":
+                    _emotionController.Mood = Emotion.Happy;
+                    await ReplyAsync("happy");
+                    break;
+                case "sad":
+                    _emotionController.Mood = Emotion.Sad;
+                    await ReplyAsync("sad");
+                    break;
+                case "nuetral":
+                    _emotionController.Mood = Emotion.Neutral;
+                    await ReplyAsync("neutral");
+                    break;
+                case "angry":
+                    _emotionController.Mood = Emotion.Angry;
+                    await ReplyAsync("angry");
+                    break;
+                default:
+                    await ReplyAsync("I can't feel this emotion at this moment");
+                    break;
+            }
+}
+
     }
 }

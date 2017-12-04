@@ -24,6 +24,16 @@ namespace RemDiscordBot.AI
         {
             throw new NotImplementedException();
         }
+
+        public void RunCommandNoData(string command)
+        {
+            throw new NotImplementedException();
+        }
+
+        CommandLog IECommandRunner.RunCommand(string command)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
         #region properties

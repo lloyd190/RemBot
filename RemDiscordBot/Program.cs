@@ -26,7 +26,7 @@ namespace RemDiscordBot
             try
             {
                 _emotionController = new EmotionController(20, 20);
-                _emotionController.EmotionStatusLog += EmotionStatusLog;
+                _emotionController.EmotionLog += EmotionStatusLog;
                 _socketClient = new DiscordSocketClient();
                 _socketClient.Log += Log;
 

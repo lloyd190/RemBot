@@ -11,14 +11,32 @@ RemBot -
 Happiness
 Sadness
 
-Pleasure -> struct (time(r)/ severity)
-Frustration -> struct (time(r)/ severity)
-Iritation -> struct (time(r)/ severity)
-Terror -> struct (time(r)/ severity)
-Rage -> struct (time(r)/ severity)
-Surprise -> struct (time(r)/ severity)
-Remorse -> struct (time(r)/ severity)
+Pleasure(cause) -> object (time(r)/ severity/ cause)
+Frustration(cause) -> object (time(r)/ severity/ cause)
+Iritation(cause) -> object (time(r)/ severity/ cause)
+Terror(cause) -> object (time(r)/ severity/ cause)
+Rage(cause) -> object (time(r)/ severity/ cause)
+Surprise(cause) -> object (time(r)/ severity/ cause)
+Remorse(cause) -> object (time(r)/ severity/ cause) 
 ->
 
+Cause-
+User -> Object
+Command -> Object
+->
 
+Command ->
+EmotionalReaction -> Object
+
+->
+
+EmotionalReaction -
+EmotionCollection
+->
+
+Emotion-
+Timer(r)
+severity
+cause
+->
 

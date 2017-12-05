@@ -134,6 +134,7 @@
     <Compile Include="AI\Emotion.cs" />
     <Compile Include="AI\EmotionalReaction.cs" />
     <Compile Include="interfaces\IECommandRunner.cs" />
+    <Compile Include="interfaces\ITimer.cs" />
     <Compile Include="structs\AILogStructs.cs" />
     <Compile Include="AI\EmotionController.cs" />
     <Compile Include="modules\CommunicationModule.cs" />

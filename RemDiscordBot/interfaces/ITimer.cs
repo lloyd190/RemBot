@@ -11,9 +11,6 @@ namespace RemDiscordBot.interfaces
     /// </summary>
     public interface ITimer
     {
-        bool TimerIsRunning { get; }
-        bool TimerEnded { get; }
-
         void InitiateTimer(double time);
         void StopTimer();
 

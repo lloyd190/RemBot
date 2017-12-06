@@ -11,7 +11,7 @@ namespace RemDiscordBot.modules
 {
     public class CommunicationModule : ModuleBase<SocketCommandContext>
     {
-        public readonly EmotionController _emotionController;
+        private readonly EmotionController _emotionController;
         //Can't import the EmotionController into the IEmotionController, not sure how to change this, the api does not pick up on it.
         public CommunicationModule(EmotionController emotionController)
         {

@@ -3,6 +3,7 @@ using Discord.Commands;
 using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
 using RemDiscordBot.AI;
+using RemDiscordBot.fileLoader;
 using RemDiscordBot.logFiles;
 using System;
 using System.Diagnostics;
@@ -25,7 +26,8 @@ namespace RemDiscordBot
 
         public async Task MainAsync(string[] args)
         {
-            try
+            Properties properties = new Properties(@"C:\Users\Lloyd Kuijs\source\repos\RemDiscordBot\RemDiscordBot\Properties.txt");
+            /*try
             {
                 Timer z = new Timer();
                 _emotionController = new EmotionController();
@@ -51,8 +53,8 @@ namespace RemDiscordBot
             catch (Exception e)
             {
                 Console.WriteLine(e);
-            }
-
+            }*/
+            await Task.Delay(-1);
         }
 
         public async Task InstallCommandsAsync()

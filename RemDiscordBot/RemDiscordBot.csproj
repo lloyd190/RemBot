@@ -134,10 +134,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AI\Emotion.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="AI\EmotionalReaction.cs" />
+    <Compile Include="fileLoader\Properties.cs" />
     <Compile Include="interfaces\IECommandRunner.cs" />
     <Compile Include="interfaces\ITimer.cs" />
     <Compile Include="structs\AILogStructs.cs" />
@@ -148,9 +145,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Keys.properties" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Properties.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

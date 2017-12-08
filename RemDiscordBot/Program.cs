@@ -2,9 +2,7 @@
 using Discord.Commands;
 using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
-using RemDiscordBot.AI;
 using RemDiscordBot.fileLoader;
-using RemDiscordBot.logFiles;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -21,7 +19,7 @@ namespace RemDiscordBot
         private IServiceProvider _services;
         private DiscordSocketClient _socketClient;
         private CommandService _commands;
-        private EmotionController _emotionController;
+        private int _emotionController;
         static void Main(string[] args) => new Program().MainAsync(args).GetAwaiter().GetResult();
 
         public async Task MainAsync(string[] args)
@@ -109,7 +107,7 @@ namespace RemDiscordBot
             }
         //TODO: maybe there are some problems with the timing of the emotion updates. 
         //Check if quick messaging doesn't Skip the previous emotion update.
-        private Task EmotionStatusLog(EmotionLog status)
+        private Task EmotionStatusLog(int status)
         {
             Console.WriteLine(status.ToString());
 

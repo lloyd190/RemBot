@@ -20,7 +20,8 @@ namespace RemDiscordBot.fileLoader
                 while (streamReader.ReadLine() != null)
                 {
                     string line = streamReader.ReadLine();
-                    if (Regex.IsMatch(line, @"^"))
+                    //might be space sensitive
+                    if (Regex.IsMatch(line, @"^\D*\d*[=][\D\d]*"))
                     {
 
                     }

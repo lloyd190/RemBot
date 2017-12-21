@@ -135,10 +135,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="fileLoader\Properties.cs" />
-    <Compile Include="interfaces\IECommandRunner.cs" />
-    <Compile Include="interfaces\ITimer.cs" />
-    <Compile Include="structs\AILogStructs.cs" />
-    <Compile Include="AI\EmotionController.cs" />
     <Compile Include="modules\CommunicationModule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -149,6 +145,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="AI\" />
+    <Folder Include="interfaces\" />
+    <Folder Include="structs\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

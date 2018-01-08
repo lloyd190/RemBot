@@ -16,9 +16,7 @@ namespace RemDiscordBot.fileLoader
         public Properties(string filePath)
         {
             _FilePaths = new List<string>();
-            _keyDictionary = new Dictionary<string, string>();
-
-            
+            _keyDictionary = new Dictionary<string, string>();         
         }
 
         public string GetKey(string key)
@@ -27,7 +25,7 @@ namespace RemDiscordBot.fileLoader
         }
         public void LoadPropertiesFile(string filePath)
         {
-            if (!File.Exists(filePath) || _FilePaths.Contains(filePath))
+            if (!File.Exists(filePath))
             {
                 return;
             }
@@ -40,9 +38,9 @@ namespace RemDiscordBot.fileLoader
                 {
                     string line = streamReader.ReadLine();
                     //might be space sensitive
-                    if (Regex.IsMatch(line, @"[a-z\d]+=[\d\w]+"))
+                    if (Regex.IsMatch(line, @"[a-z\d]+=[\w]+"))
                     {
-                        MatchCollection matches = Regex.Matches(line, @"([a-z\d]+)=([\d\w]+)");
+                        MatchCollection matches = Regex.Matches(line, @"([a-z\d]+)=([\w]+)");
                         foreach (Match match in matches)
                         {
                             string propertyName = match.Groups[1].Value;
@@ -55,18 +53,25 @@ namespace RemDiscordBot.fileLoader
                 }
             }
             catch (IOException e)
-            {
-                Console.WriteLine("there was a problem with loading the properties : {0}", e.Message);
+            { 
+                Console.WriteLine("failed to load properties : {0}", e.Message);
             }
             finally
             {
+                if (!_FilePaths.Contains(filePath))
+                {
+                    _FilePaths.Add(filePath);
+                }
                 streamReader.Dispose();
             }
         }
 
         public void Reload()
         {
-           
+            foreach (var path in _FilePaths)
+            {
+                LoadPropertiesFile(path);
+            }
         }
     }
 }

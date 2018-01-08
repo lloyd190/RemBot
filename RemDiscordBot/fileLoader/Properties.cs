@@ -15,13 +15,17 @@ namespace RemDiscordBot.fileLoader
 
         public Properties(string filePath)
         {
-            _FilePaths = new List<string>();
-            _keyDictionary = new Dictionary<string, string>();         
+            _FilePaths = new List<string>
+            {
+                filePath
+            };
+            _keyDictionary = new Dictionary<string, string>();
+            LoadPropertiesFile(filePath);
         }
 
-        public string GetKey(string key)
+        public string GetKey(string keyName)
         {
-            return null;
+            return _keyDictionary[keyName];
         }
         public void LoadPropertiesFile(string filePath)
         {
@@ -38,9 +42,9 @@ namespace RemDiscordBot.fileLoader
                 {
                     string line = streamReader.ReadLine();
                     //might be space sensitive
-                    if (Regex.IsMatch(line, @"[a-z\d]+=[\w]+"))
+                    if (Regex.IsMatch(line, @"[A-z\d]+=[\S]+"))
                     {
-                        MatchCollection matches = Regex.Matches(line, @"([a-z\d]+)=([\w]+)");
+                        MatchCollection matches = Regex.Matches(line, @"([A-z\d]+)=([\S]+)");
                         foreach (Match match in matches)
                         {
                             string propertyName = match.Groups[1].Value;
@@ -68,6 +72,7 @@ namespace RemDiscordBot.fileLoader
 
         public void Reload()
         {
+            _keyDictionary.Clear();
             foreach (var path in _FilePaths)
             {
                 LoadPropertiesFile(path);

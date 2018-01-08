@@ -14,22 +14,16 @@ namespace RemDiscordBot
 {
     class Program
     {
-        //TODO: move tokens and other server sided variables to a separate file later on
-        private readonly String _token = "MzgxMDA0MjU3NTU5NzA3NjQ4.DPBsvw.kmbEujIW2IsvMXXOGJcJkaPHj_0";
         private IServiceProvider _services;
         private DiscordSocketClient _socketClient;
         private CommandService _commands;
-        private int _emotionController;
         static void Main(string[] args) => new Program().MainAsync(args).GetAwaiter().GetResult();
 
         public async Task MainAsync(string[] args)
         {
             Properties properties = new Properties(@"C:\Users\Lloyd Kuijs\source\repos\RemDiscordBot\RemDiscordBot\Properties.txt");
-            /*try
+            try
             {
-                Timer z = new Timer();
-                _emotionController = new EmotionController();
-                _emotionController.EmotionLog += EmotionStatusLog;
                 _socketClient = new DiscordSocketClient();
                 _socketClient.Log += Log;
 
@@ -38,12 +32,10 @@ namespace RemDiscordBot
                 _services = new ServiceCollection()
                     .AddSingleton(_socketClient)
                     .AddSingleton(_commands)
-                    .AddSingleton(_emotionController)
                     .BuildServiceProvider();
 
-
                 await InstallCommandsAsync();
-                await _socketClient.LoginAsync(TokenType.Bot, _token);
+                await _socketClient.LoginAsync(TokenType.Bot, properties.GetKey("botKey"));
                 await _socketClient.StartAsync();
 
                 await Task.Delay(-1);
@@ -51,7 +43,7 @@ namespace RemDiscordBot
             catch (Exception e)
             {
                 Console.WriteLine(e);
-            }*/
+            }
             await Task.Delay(-1);
         }
 
@@ -105,14 +97,6 @@ namespace RemDiscordBot
                 Console.WriteLine(message.ToString());
                 return Task.CompletedTask;
             }
-        //TODO: maybe there are some problems with the timing of the emotion updates. 
-        //Check if quick messaging doesn't Skip the previous emotion update.
-        private Task EmotionStatusLog(int status)
-        {
-            Console.WriteLine(status.ToString());
-
-            return Task.CompletedTask;
-        }
     }
 }
 

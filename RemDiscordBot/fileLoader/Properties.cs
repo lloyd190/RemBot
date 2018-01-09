@@ -52,6 +52,11 @@ namespace RemDiscordBot.fileLoader
 
                             _keyDictionary.Add(propertyName, propertyKey);
                             Console.WriteLine("property was added {0}={1}", propertyName, propertyKey);
+
+                            if (!_FilePaths.Contains(filePath))
+                            {
+                                _FilePaths.Add(filePath);
+                            }
                         }
                     }
                 }
@@ -62,10 +67,6 @@ namespace RemDiscordBot.fileLoader
             }
             finally
             {
-                if (!_FilePaths.Contains(filePath))
-                {
-                    _FilePaths.Add(filePath);
-                }
                 streamReader.Dispose();
             }
         }

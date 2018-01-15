@@ -63,7 +63,7 @@ namespace RemDiscordBot
             //TODO: improve or remove this code, hacky solution for a troll thing for in the chat
             if (message.Content.Contains("~kiss") && message.Content.Contains("@381004257559707648"))
             {
-                if (message.Author.Username == "Lloyd" || message.Author.Username == "Marcel Kenter")
+                if (message.Author.Id.ToString() == "173781483075403776" || message.Author.Id.ToString() == "190122834020925441")
                 {
                     await message.Channel.SendMessageAsync(String.Format("xx {0} , {1}", message.Author.Username, ":3"));
                     return;
